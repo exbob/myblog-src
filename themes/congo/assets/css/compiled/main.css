@@ -2043,7 +2043,7 @@ body:has(#menu-controller:checked) {
 }
 
 .max-w-7xl {
-  max-width: 80rem;
+  max-width: 85rem;
 }
 
 .max-w-\[10rem\] {
@@ -2059,7 +2059,7 @@ body:has(#menu-controller:checked) {
 }
 
 .max-w-prose {
-  max-width: 65ch;
+  max-width: 82ch;
 }
 
 .flex-auto {
