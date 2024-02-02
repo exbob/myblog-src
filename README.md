@@ -70,4 +70,15 @@ comments: true
 
 用三条横线标注头部元数据，`draft = true` 表示这个文章会被隐藏，不显示到博客上，发布时可以改为 fales 。图片存放在 pics 路径下，在 index.md 中通过相对路径引用。
 
+## 使用 github actions
 
+在 `.github\workflows\deploy.yml` 文件中配置了工作流，在源码仓库 `exbob/myblog-src` 利用 github actions 自动生成静态页面，并推送到 `exbob/exbob.github.io` 仓库。使用的模块是:
+
+- [peaceiris/actions-hugo](https://github.com/peaceiris/actions-hugo): 安装并设置 Hugo 构建环境
+- [peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages): 生成静态页面并推送到指定仓库
+
+需要注意的是，推送过程需要使用密钥，设置步骤如下：
+
+1. 执行 `ssh-keygen -t rsa -b 4096 -C "actions-hugo_20240202" -f gh-pages -N ""` 生成 gh-pages 和 gh-pages.pub 两个密钥文件。
+2. 在源码仓库的页面，进入 Settings->Secrets and variables->Actions 页面，点击 **New repository secret** 按钮添加一条私钥，私钥名称设为 **ACTIONS_HUGO_KEY** ，私钥内容为 gh-pages 文件的内容。
+3. 在目标仓库的页面，进入 Settings->Deploy keys 页面，点击 **Add deploy key** 按钮添加一条公钥，公钥名称可以随意，这里设为 **ACTIONS_HUGO_KEY_PUBLIC** ，公钥内容为 gh-pages.pub 文件的内容。
