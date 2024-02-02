@@ -38,3 +38,4 @@ jobs:
           external_repository: exbob/exbob.github.io # 推送的远程仓库
           publish_branch: master  # 要推送的仓库分支， default: gh-pages
           publish_dir: ./public # 要推送的仓库路径
+          commit_message: ${{ github.event.head_commit.message }} # 自定义 commit 信息
