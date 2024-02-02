@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
       # 2. 安装 Hugo
       - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
+        uses: peaceiris/actions-hugo@v2.6.0
         with:
           hugo-version: '0.121.1'
           # extended: true
@@ -32,7 +32,7 @@ jobs:
         run: hugo --minify
       # 4. 将输出的静态文件推送到 github
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v3.9.3
         with:
           deploy_key: ${{ secrets.ACTIONS_HUGO_KEY }}
           external_repository: exbob/exbob.github.io # 推送的远程仓库
