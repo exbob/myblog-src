@@ -1,0 +1,40 @@
+name: Deploy Hugo Site to GitHub Pages
+
+on:
+  # 推送main分支后自动触发
+  push:
+    branches:
+      - main  # Set a branch to deploy
+  # 在 Action 页面手动触发
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    # 设置工作环境的操作系统版本
+    runs-on: ubuntu-22.04
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    # 执行的步骤
+    steps:
+      # 1. 检出当前仓库
+      - uses: actions/checkout@v4
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+      # 2. 安装 Hugo
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: '0.121.1'
+          # extended: true
+      # 3. 执行 hogo ，输出静态文件
+      - name: Build
+        run: hugo --minify
+      # 4. 将输出的静态文件推送到 github
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_HUGO_KEY }}
+          external_repository: exbob/exbob.github.io # 推送的远程仓库
+          publish_branch: master  # 要推送的仓库分支， default: gh-pages
+          publish_dir: ./public # 要推送的仓库路径
