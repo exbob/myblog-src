@@ -9,7 +9,7 @@
 
 ## 快速开始
 
-在电脑上安装 (hugo v0.121.1](https://github.com/gohugoio/hugo/releases/tag/v0.121.1) :
+在电脑上安装 [hugo v0.121.1](https://github.com/gohugoio/hugo/releases/tag/v0.121.1) :
 
 ```
 > hugo.exe version
