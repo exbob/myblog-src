@@ -64,7 +64,7 @@ tags:
 
 ## 2. 快速开始
 
-先搭建Yocto的宿主机环境，然后构建一个最简单系统，这样对Yocto有一个直观的认识。
+先搭建 Yocto 的宿主机环境，然后构建一个最简单系统，这样对Yocto有一个直观的认识。后面涉及的 Yocto 源码已经推送到 github ：<https://github.com/exbob/yocto-kirkstone>。
 
 ### 2.1 宿主机
 
