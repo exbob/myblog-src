@@ -10,7 +10,7 @@ tags:
 
 ---
 
-# 1. 概述
+## 1. 概述
 
 NXP 为官方评估板  i.MX6ULL EVK  提供了完整的 Yocto 项目源码和文档 ，板卡的外观和接口如图：
 
@@ -24,11 +24,11 @@ NXP 为官方评估板  i.MX6ULL EVK  提供了完整的 Yocto 项目源码和�
 * 芯片是 NXP 的 iMX6ULL : https://www.nxp.com/products/processors-and-microcontrollers/arm-processors/i-mx-applications-processors/i-mx-6-processors:IMX6X_SERIES
 * 软件使用最新的 Linux 5.4.47_2.2.0 : https://www.nxp.com/design/software/embedded-software/i-mx-software/embedded-linux-for-i-mx-applications-processors:IMXLINUX
 
-# 2. 构建系统 
+## 2. 构建系统 
 
 我们先为这个板卡编译一个可以运行的系统。
 
-## 2.1. 准备宿主机
+### 2.1. 准备宿主机
 
 使用 Ubuntu 20.04 （至少要用 18.04 ，低版本系统会遇到很多问题），安装必要的开发包：
 
@@ -77,7 +77,7 @@ lrwxrwxrwx  1 sbs sbs  30 Nov 20 05:55 setup-environment -> sources/base/setup-e
 drwxrwxr-x 16 sbs sbs 4096 Nov 20 05:55 sources
 ```
 
-## 2.2. 配置
+### 2.2. 配置
 
 NXP 提供了一个脚本 imx-setup-release.sh，它简化了 i.MX 机器的设置。语法：
 
@@ -104,7 +104,7 @@ MACHINE=imx6ull14x14evk DISTRO=fsl-imx-fb source ./imx-setup-release.sh -b imx6u
 * bblayers.conf  包含了本发行版所需的所有 layer ，编译时，会到这些 layer 下找相应的 recipe 。
 * local.conf 包含了一些编译设置选项，比如指定了硬盘平台的 MACHINE 变量。
 
-## 2.3. 编译
+### 2.3. 编译
 
 官方提供了多种编译目标，可以根据需要选择，或者在此基础上修改：
 
@@ -122,7 +122,7 @@ $ bitbake core-image-base
 Fetcher failure for URL: 'https://www.example.com/'. URL https://www.example.com/ doesn't work.
 ```
 
-## 2.4. 烧写
+### 2.4. 烧写
 
 编译成功后，输出的文件位于 tmp/deploy/images/imx6ull14x14evk 目录下，用于 SD/MMC/eMMC 的镜像压缩文件是 core-image-base-imx6ull14x14evk.wic.bz2，它包含了 U-boot ，设备树，内核和根文件系统，可以用如下命令直接写入 SD 卡：
 
@@ -144,7 +144,7 @@ $ sudo dd if=<image name>.wic of=/dev/sd<partition> bs=1M conv=fsync
 
 上面这些文件通常是一个软链接，每次编译后都会指向最新编译生成的实际文件。关于单独烧写的详细信息可以参考 i.MX Linux® User's Guide (IMXLUG) 中的  "4.3 Preparing an SD/MMC card to boot" 。如果要烧写到板载的 eMMC ，通常是用 UUU 工具，通过 USB-OTG 接口烧写。
 
-## 2.5. 安装
+### 2.5. 安装
 
 1. 将 TF卡安装到 CPU 板的 MicroSD 插槽（J301）
 2. 用 USB 线缆（Micro-B 转标准-A）连接开发板的调试 USB 口（J1901 ）和电脑的 USB 口，在电脑的设备管理器上可以看到串口设备（需要安装驱动）：
@@ -162,11 +162,11 @@ $ sudo dd if=<image name>.wic of=/dev/sd<partition> bs=1M conv=fsync
 5. 连接电源，将电源开关（SW2001）滑至 ON ，系统即开始启动，在串口终端软件上可以看到启动过程。
 6. 启动完毕后会看到登录提示符，用户名是 root ，无密码。
 
-# 3. 使用 UUU 
+## 3. 使用 UUU 
 
 Universal Update Utility（UUU）是 MFGTools 的最新演进版(也叫做 MFGTools v3)，可以在 Win10 64bit 和 Ubuntu 16.14 64bit 以上版本的主机上运行，是NXP官方开发的镜像烧写工具，我们主要是用它通过 USB-OTG 接口将各种系统镜像组件烧写到板载的 eMMC 。可以在 https://github.com/NXPmicro/mfgtools/releases 下载软件和文档，当前版本是 1.4.43 。
 
-## 3.1. 准备 
+### 3.1. 准备 
 
 需要将板上的 SD 卡取出，换成 eMMC ，然后将启动模式改为串行下载器（SW602:D1:OFF,D2:ON)。使用 USB-OTG 数据线将板载的 OTG 接口连接到电脑。 在电脑端打开 PowerShell 环境，进入 uuu 程序的目录，执行 `uuu.exe -lsusb` ，会列出识别到的 USB Device ：
 
@@ -182,7 +182,7 @@ Connected Known USB Devices
 
 可以将调试串口也连接到电脑，会有信息打印输出。
 
-## 3.2. 烧写 BootLoader
+### 3.2. 烧写 BootLoader
 
 以烧写 u-boot 为例，将 u-boot 镜像文件放在 uuu 程序的目录下，然后执行 `uuu.exe -b emmc <bootloader>` ，立即开始烧写，烧写成功显示如下：
 
@@ -282,7 +282,7 @@ Hit any key to stop autoboot:  0
 =>
 ```
 
-## 3.3. 烧写系统镜像 
+### 3.3. 烧写系统镜像 
 
 烧写系统镜像的语法是 `uuu.exe -b emmc_all <bootloader> <rootfs.wic.bz2>` ,例如：
 
@@ -336,17 +336,17 @@ NXP i.MX Release Distro 5.4-zeus imx6ull14x14evk ttymxc0
 imx6ull14x14evk login:
 ```
 
-# 4. 使用 U-boot
+## 4. 使用 U-boot
 
 内核和文件系统还可以使用 u-boot 下载。 
 
-# 5. Yocto系统开发 
+## 5. Yocto系统开发 
 
 Yocto系统开发的学习过程可以参考 https://www.yoctoproject.org/docs/what-i-wish-id-known/ 。
 
 前面是使用官方提供的配置编译出系统镜像，通常我们需要根据实际情况定制自己的系统。在 Yocto 工程中，工作开始之前，都应该初始化编译环境，语法是：`source setup-environment <build dir>` 。
 
-## 5.1. OpenEmbedded
+### 5.1. OpenEmbedded
 
 Yocto 是一个开源合作项目，它帮助开发人员创建基于 Linux 的定制系统，使用 OpenEmbedded 开发模型构建。
 
@@ -367,7 +367,7 @@ OpenEmbedded 的工作流如下：
 
 参考：[https://www.yoctoproject.org/docs/3.1.2/overview-manual/overview-manual.html](https://www.yoctoproject.org/docs/3.1.2/overview-manual/overview-manual.html#overview-manual-concepts)
 
-## 5.2. 目录结构
+### 5.2. 目录结构
 
 通常情况下，我们会使用一个硬件原厂发布的 BPS 源码编译系统镜像，BSP 源码包含了 Yocto 项目的参考发行版 poky 包，还有原厂加入的扩展包，当完成了第一次系统构建后，工程目录下的文件结构大致如下：
 
@@ -404,7 +404,7 @@ meta-openembedded 提供很多扩展包。meta-imx 和 meta-freescale* 都是 NX
 
 源码目录结构的详细信息可以查看 https://www.yoctoproject.org/docs/3.0.4/ref-manual/ref-manual.html#ref-structure 。
 
-## 5.3. Bitbake
+### 5.3. Bitbake
 
 Bitbake 手册：https://www.yoctoproject.org/docs/3.1.2/bitbake-user-manual/bitbake-user-manual.html
 
@@ -503,7 +503,7 @@ BitBake 执行任务的顺序由其任务调度器控制。`${WORKDIR}/tmp/` 目
 
 关于 recipe 文件中其他选项的含义可以查看 https://www.yoctoproject.org/docs/3.0.4/ref-manual/ref-manual.html#ref-varlocality-recipes 。
 
-## 5.4. 新建 Layer
+### 5.4. 新建 Layer
 
 新建 layer 的过程可以手动完成，但是推荐使用 bitbake-layers 脚本的create-layer子命令来简化创建过程。基本的语法是 `bitbake-layers create-layer <your_layer_name>` ，这条命令会按默认的模式新建如下文件：
 
@@ -560,11 +560,11 @@ BitBake按照 BBLAYERS 变量的设置，自上而下地解析每个 conf/layer.
 
 有些工作可能已经有前人做过了，我们可以在 [OpenEmbedded Metadata Index](http://layers.openembedded.org/layerindex/branch/master/layers/) 下查找特定功能 layer ，拿来直接用。
 
-## 5.5. 自定义系统镜像
+### 5.5. 自定义系统镜像
 
 自定义系统镜像主要是修改构建系统的源码，定制输出到目标镜像的文件，有很多种方式，比如修改 con/local.conf 文件，这里的修改是全局性的，会所有的镜像生效，不利于项目的工程化管理，最好的方式依然是在自定义的 layer 中添加对源码的修改。例如，要定制 fsl-image-machine-test 生成的镜像，就可以新建一个 image-machine-test.bbappend 文件进行修改。
 
-### 5.5.1. 添加或删除包
+#### 5.5.1. 添加或删除包
 
 定制系统时,经常要添加一个包到目标镜像中，或者从目标镜像里删除一个已有的包。Yocto 构建系统镜像时，主要是通过 IMAGE_INSTALL 和 IMAGE_IMAGE_FEATURES 两个变量来确定目标镜像要安装那些包，以构建 fsl-image-machine-test 系统镜像为例：
 
@@ -685,7 +685,7 @@ bitbake -g fsl-image-machine-test
 
 它会在当前目录下生成两个文件，pn-buildlist 列出了生成目标所依赖的所有包，我们可以在这里快速的检查删减和增加的操作是否成功，task-depends.dot 记录了所有任务的依赖关系，可以用 Graphviz 打开，进行图形化的阅览。
 
-### 5.5.2. 自定义 recipe 
+#### 5.5.2. 自定义 recipe 
 
 我们也可以新建一个系统镜像的 recipe ，添加自己需要的特性。例如，在 meta-freescale-distro/recipes-fsl/images 目录下新建一个 fsl-image-custom.bb 文件，然后添加如下内容：
 
@@ -695,7 +695,7 @@ inherit core-image # 继承 core-image 类
 IMAGE_INSTALL_append = " package-name" # 添加的包
 ```
 
-### 5.5.3. 自定义包组
+#### 5.5.3. 自定义包组
 
 包组（packagegroup）就是按特定需求把几个包组合成一个变量，以 packagegroup- 为前缀，在类似 meta*/recipes*/packagegroups/packagegroup*.bb的文件中定义。以 poky/meta/recipes-core/packagegroups/packagegroup-base.bb 文件为例，文件内通过 PACKAGES 变量列出了要产生的包组，然后再用 RDEPENDS 和 RRECOMMENDS 项设置每个包组所包含的软件包。
 
@@ -727,7 +727,7 @@ RRECOMMENDS_${PN}-tools = "\
 
 `${PN}` 是替代文件名（packagegroup-custom）的变量，所以，这里是定义了两个包组：packagegroup-custom-apps 和 packagegroup-custom-tools ，然后用 `RDEPENDS_${PN}-*` 设置了每个包组依赖的软件包。如果只想定义一般包组，可以不用 PACKAGES 变量，​`${PN}` 即是包组的名称，用 `RDEPENDS_${PN}` 设置包组依赖的软件包。
 
-### 5.5.4. 自定义 hostname 
+#### 5.5.4. 自定义 hostname 
 
 Linux 系统在 /etc/hostname 文件中定义了 hostname ，默认情况下，Yocto 是在 base-files_*.bb 文件中定义 hostname  的：
 
@@ -755,7 +755,7 @@ hostname="myhostname"
 hostname_pn-base-files = "myhostname"
 ```
 
-### 5.5.5. 自定义 /etc/issue 和 /etc/issue.net
+#### 5.5.5. 自定义 /etc/issue 和 /etc/issue.net
 
 Linux 系统在用户登录时会显示欢迎信息，通常是一些关于系统版本的说明，这些信息定义在 /etc/issue 和 /etc/issue.net 两个文件中。在 Yocto 中，这两个文件的内容也是在  base-files_*.bb 文件中定义的：
 
@@ -808,7 +808,7 @@ do_install_basefilesissuecustom () {
 
 
 
-### 5.5.6. 修改 rootfs 分区的大小
+#### 5.5.6. 修改 rootfs 分区的大小
 
 我们的系统镜像文件使用 .wic 格式定义 SD/MMC 存储介质上的分区， .wic 是用 OpenEmbedded Kickstart(.wks) 生成的，支持 RAW 和 FileSystem两种分区方式，关于 .wks 的详细信息可以查看 [kickstart-docs](#ref-kickstart) 。
 
@@ -920,13 +920,13 @@ IMAGE_ROOTFS_EXTRA_SPACE="0"
 2. 增加额外空间，比如在 conf/local.conf 文件中添加：IMAGE_ROOTFS_EXTRA_SPACE = "1048576" ，使 rootfs 直接多出 1GB 的空间。需要注意的是，这可能是 IMAGE_OVERHEAD_FACTOR 系数之后的额外空间。
 3. 直接设置 IMAGE_ROOTFS_SIZE ，使它足够大，可以占满存储介质的空间。
 
-## 5.6. 添加新的 recipe 
+### 5.6. 添加新的 recipe 
 
 recipe（.bb文件）是 Yocto 项目环境中的基本组件。由 OpenEmbedded 构建系统构建的每个软件包都需要一个 recipe 来定义。我们可以从头开始手写 recipe ，或者参考别的 recipe 进行修改，例如在 http://layers.openembedded.org/layerindex/branch/master/layers/ 中有很多社区维护的recipe ，可以查找符合需求的拿来用。此外，OpenEmbedded 和 Yocto 分别提供了了 devtool 和 recipetool 两种工具来新建 recipe 。Recipe 文件的语法也可以参考 https://www.yoctoproject.org/docs/1.8/bitbake-user-manual/bitbake-user-manual.html 。下面是手写一个 recipe 的基本流程：
 
 ![img](./pics/wpsXEGnru.jpg) 
 
-### 5.6.1. 新建文件
+#### 5.6.1. 新建文件
 
 以移植 [UCI](https://git.openwrt.org/?p=project/uci.git;a=summary) 为例，因为 bitbake 是通过 conf/layer.conf 文件中定义的 BBFILES 变量来搜索 recipe 的，这个变量定义了搜索路径：
 
@@ -970,7 +970,7 @@ PV="git"
 
 下面开始编辑这个文件。
 
-### 5.6.2. 获取源码
+#### 5.6.2. 获取源码
 
 获取源码的过程是由 do_fetch 任务来完成，主要是通过 SRC_URI 变量控制，它可以指定源码的位置，获取源码的协议，源码的版本等。源码通常来源于三种途径：
 
@@ -1038,7 +1038,7 @@ bitbake uci -c unpack
 
 源码会释放到 tmp/work/cortexa7t2hf-neon-poky-linux-gnueabi/uci/1.0.0+gitAUTOINC+52bbc99f69-r0/git 路径下。
 
-### 5.6.3. 打补丁
+#### 5.6.3. 打补丁
 
 有时需要在获取源码后对其打补丁。SRC_URI 中提到的任何文件，如果其名称以 .patc 或 .diff结尾，或者是这些后缀的压缩版本(例如：diff.gz)，都会被视为补丁。do_patch 任务会自动应用这些补丁。
 
@@ -1046,7 +1046,7 @@ bitbake uci -c unpack
 
 如同在 SRC_URI 中使用 file:// 引用的本地文件一样，应该把补丁文件放在 recipe 文件旁边名为 ${BP}、${BPN} 或者 files 的文件夹中。
 
-### 5.6.4. 设置 License
+#### 5.6.4. 设置 License
 
 应该在 recipe 中用  [LICENSE](#var-LICENSE) 和 [LIC_FILES_CHKSUM](#var-LIC_FILES_CHKSUM) 设置版权许可证和许可证文件的校验和。
 
@@ -1064,7 +1064,7 @@ LICENSE = "GPLv2"
 LIC_FILES_CHKSUM = "file://CMakeLists.txt;md5=5c39cc16168ed9d0e1603468508a6e2b"
 ```
 
-### 5.6.5. 确定依赖关系
+#### 5.6.5. 确定依赖关系
 
 大多数软件包都有一个它们所需要的其他软件包的简短列表，这就是所谓的依赖关系。这些依赖关系可分为两大类：构建时依赖关系，这是软件构建时需要的；运行时依赖关系，这是软件运行时需要安装在目标机上的。
 
@@ -1088,7 +1088,7 @@ uci 的编译和运行都依赖 libubox ，我们需要在 uci_git.bb 中添加�
 DEPENDS = "libubox"
 ```
 
-### 5.6.6. 配置
+#### 5.6.6. 配置
 
 大部分软件在编译之前都需要进行配置，通常有如下三种情况：
 
@@ -1105,7 +1105,7 @@ EXTRA_OECMAKE = "-DBUILD_LUA=OFF"
 
 一旦配置成功，最好检查一下 log.do_configure 文件，以确保适当的选项已经启用。
 
-### 5.6.7. 编译
+#### 5.6.7. 编译
 
 配置成功后，系统会自动调用 do_compile 任务进行编译，如果没有报错，就不用做任何事情。如果编译步骤失败，需要分析失败原因，可能的原因有：
 
@@ -1113,7 +1113,7 @@ EXTRA_OECMAKE = "-DBUILD_LUA=OFF"
 * 主机路径错误。当为目标机交叉编译时，使用了来自主机系统的不正确的头文件、库或其他文件时，就会发生该故障。要解决这个问题，请检查log.do_compile文件，以确定正在使用的路径，然后添加配置选项、应用补丁等。
 * 错误的头文件和库文件。如果因为没有在 DEPENDS 中声明而缺少构建时的依赖关系，或者因为依赖关系存在，但构建过程用来查找文件的路径不正确，配置步骤没有检测到它，编译过程可能会失败。对于这两种失败的情况，编译过程都会报告无法找到文件。在这些情况下，需要回过头来向配置过程添加额外的选项。
 
-### 5.6.8. 安装
+#### 5.6.8. 安装
 
 安装过程中，系统调用 do_install 任务生成的文件和目录结构复制到目标设备上的镜像位置。会将 ${S}、${B} 和 ${WORKDIR} 目录中的文件复制到 ${D} 目录中，以创建目标系统中的结构。对于使用 autotools 和 cmake 构建的软件包，系统会调用它们的 instal 指令执行安装任务，如果能够满足要求，就不用修改。其他情况则需要修改或者手写 do_install 任务。我们可以在 recipe 文件中定义一个 do_install 函数，然后添加安装指令。
 
@@ -1148,7 +1148,7 @@ do_install() {
 }
 ```
 
-### 5.6.9. 使能系统服务 
+#### 5.6.9. 使能系统服务 
 
 如果希望软件安装后随系统开机启动，通常需要使能 SysVinit 或 Systemd  。
 
@@ -1156,11 +1156,11 @@ do_install() {
 
 对于 Systemd 服务，首先要确保  DISTRO_FEATURES 中已经加入了 "systemd"，然后 recipe 需要继承 systemd 类。详情参考 https://www.yoctoproject.org/docs/3.0.4/ref-manual/ref-manual.html#ref-classes-systemd 。
 
-### 5.6.10. 打包
+#### 5.6.10. 打包
 
 如果使用了 cmake ，这一步也是自动的，否则需要写一个 do_package 函数。
 
-### 5.6.11 实例
+#### 5.6.11 实例
 
 下面是一个简单实例，目录结构如下：
 
@@ -1206,7 +1206,7 @@ SRC_URI = "file://helloworld.tar.gz;md5=0374ade698e0bcf8509ecda2f7b4f404"
 
 这样虽然方便，但是压缩包无法用 git 进行版本控制，所以，最好是在服务器上建立 git 仓库，然后通过 git 协议添加到 SRC_URI 。
 
-## 5.7. 使用 .bbappend 文件
+### 5.7. 使用 .bbappend 文件
 
 将元数据追加到另一个 recipe 的 recipe 称为 BitBake append 文件。一个 BitBake append文件使用 .bbappend 后缀，而相应的配方中的 Metadata 被附加到的配方使用 .bb 文件类型后缀。
 
@@ -1255,7 +1255,7 @@ FILESEXTRAPATHS_prepend := "${THISDIR}/${PN}:"
 
 注意，BitBake 会自动定义 THISDIR 变量，你不应该自己设置这个变量。使用"_prepend "作为 FILESEXTRAPATHS 的一部分，可以确保你的路径会在最终列表中的其他路径之前被搜索到。另外，并不是所有的追加文件都会添加额外的文件。很多 append 文件只是为了添加构建选项而存在（例如systemd）。对于这些情况，你的 append 文件甚至不会使用 FILESEXTRAPATHS 语句。
 
-# 6. Yocto 内核开发
+## 6. Yocto 内核开发
 
 参考：[Linux Kernel Development Manual](https://docs.yoctoproject.org/3.0.4/kernel-dev/kernel-dev.html)。进行开发工作之前，都要初始化开发环境：
 
@@ -1272,7 +1272,7 @@ bitbake-layers add-layer meta-mylayer
 
 然后在 meta-mylayer 下新建一个 recipes-kernel 文件夹，用于存放内核开发相关的 append 和 recipe 。
 
-## 6.1. 修改内核源码
+### 6.1. 修改内核源码
 
 对内核源码的修改是通过 append 文件，使用补丁文件的形式添加修改内容。
 
@@ -1340,7 +1340,7 @@ $ bitbake linux-imx -c patch
 $ bitbake linux-imx
 ```
 
-## 6.2. 修改内核配置
+### 6.2. 修改内核配置
 
 源码准备完毕后，bitbake 会继续执行配置工作，如果要修改配置，需要手动执行 menuconfig ：
 
@@ -1403,7 +1403,7 @@ do_merge_fragment() {
 addtask merge_fragment before do_compile after do_configure
 ```
 
-## 6.3. 编译外部驱动
+### 6.3. 编译外部驱动
 
 对于来自内核源码树之外的驱动，可以通过新建 recipe 的方式进行编译。以 sources/poky/meta-skeleton/recipes-kernel/hello-mod/hello-mod_0.1.bb 为例：
 
@@ -1426,11 +1426,11 @@ RPROVIDES_${PN} += "kernel-module-hello"
 
 可以把这个文件复制到 meta-mylayer/recipes-kernel/ 下的相应文件夹里，更改一个有意义的名字，在此基础上进行修改。
 
-# 7. Yocto 应用开发
+## 7. Yocto 应用开发
 
 Yocto 的应用开发有两种方式，一种是在 yocto 项目内新建 recipe ，另一种是导出 SDK ，然后使用 SDK 独立开发应用软件，第二种更方便一点。
 
-## 7.1. 安装 SDK
+### 7.1. 安装 SDK
 
 执行如下命令，生成扩展 SDK 安装脚本：
 
