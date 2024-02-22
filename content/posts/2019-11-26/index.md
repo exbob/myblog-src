@@ -133,7 +133,7 @@ TCP 有如下几个特点：
 
 TCP socket 编程的 API 调用次序如下：
 
-![](./pics_1.jpg)
+![](./pics/2019-11-26_1.jpg)
 
 服务器端的 socket 绑定本机 IP 和端口后，调用 `socket.listen()` 方法表示愿意接受连接请求：
 

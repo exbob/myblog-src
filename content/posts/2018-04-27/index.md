@@ -12,7 +12,7 @@ comments: true
 
 构建一个 yocto 系统镜像的基本流程如下：
 
-![](./pics_1.jpg)
+![](./pics/2018-04-27_1.jpg)
 1. 准备宿主机系统，安装必要的开发工具。
 2. 初始化构建环境，通常是利用 oe-init-build-env 脚本，默认会新建一个构建目录 build 。
 3. 编辑 build/conf/local.conf 文件，确认 MACHINE 变量，为

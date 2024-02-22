@@ -20,7 +20,7 @@ Appweb 是一个快速、高效、安全的开源嵌入式 web server ，同时�
 * SSL/TLS 支持包
 * 文档和源码
 
-![](./pics_1.jpg)
+![](./pics/2017-11-24_1.jpg)
 
 特性：
 
@@ -65,7 +65,7 @@ appweb    6505 nobody    7u  IPv6 1444274      0t0  TCP *:https (LISTEN)
 
 如果发现启动不成功，可以查看一下 /etc/appweb/install.conf 文件，把第一行开头的 -e 去掉，然后重启。启动成后通过浏览器访问主机 IP 即可显示默认页面：
 
-![](./pics_2.png)
+![](./pics/2017-11-24_2.png)
 Appweb 提供了一个管理工具 appman ，它可以将 appweb 作为一个守护进程启动，还可以管理 appweb 的运行。appweb 的语法是 `appweb  [option]` ，可用的选项有：
 
 * --config filename，指定配置文件替代默认的 appweb.conf.

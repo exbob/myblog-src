@@ -10,7 +10,7 @@ comments: true
 
 ## 0. 准备
 
-![](./pics_1.jpg)
+![](./pics/2017-05-09_1.jpg)
 
 * Raspberry Pi 3 Model B
 * 32GB Class10 TF 卡（官方推荐 8GB 以上）和读卡器
@@ -259,7 +259,7 @@ comments: true
 
 树莓派通过 40 pin 排针引出 26 路 GPIO ，输出高电平 3.3V ，部分 GPIO 有复用功能，包括一个两线 I2C ，一个四线 SPI ，一个 UART ，信号定义如下：
 
-![](./pics_2.jpg)
+![](./pics/2017-05-09_2.jpg)
 
 读写 GPIO 可以用 C 语言或者 Python ，官方推荐的 Python GPIO 是一个小型 Python 库，但是不支持 SPI 、I2C 等 GPIO 的复用功能，使用 C 语言开发的 WiringPi 更受欢迎：<http://wiringpi.com/> ，它提供了一个 C 语言开发库， API 风格类似 Arduino ，可以访问 GPIO 管脚的所有功能，还提供了一个命令行工具 gpio ，可以直接访问 GPIO 管脚。
 
@@ -477,7 +477,7 @@ Samba 可以实现树莓派上的文件在局域网内的共享。安装必要�
 
 在 MAC 中打开 Finder > 前往 > 网络 ，就可以看到树莓派的共享文件夹，访问 share 共享目录无需密码，而 NAS-Data 需要密码验证：
 
-![](./pics_3.png)
+![](./pics/2017-05-09_3.png)
 ### 4.3. FTP 服务器
 
 在树莓派上安装 vsftpd ：
@@ -499,7 +499,7 @@ Samba 可以实现树莓派上的文件在局域网内的共享。安装必要�
 
 用 ftp 客户端软件登录：
 
-![](./pics_4.png)
+![](./pics/2017-05-09_4.png)
 
 ## 5. 移植 UCI
 
@@ -608,7 +608,7 @@ UCI 是 OpenWRT 的一个配置工具，提供 C 语言 API 和 Shell 命令接�
 
 通过浏览器访问树莓派的 IP ，可以如下页面：
 
-![](./pics_5.png)
+![](./pics/2017-05-09_5.png)
 ### 6.2. 安装 Django
 
 先安装 pip ：
@@ -643,4 +643,4 @@ UCI 是 OpenWRT 的一个配置工具，提供 C 语言 API 和 Shell 命令接�
 
 打开浏览器，访问 `http://localhost_ip:8000` ，显示 `Hello uWSGI`，说明 `Web client - uWSGI - Python` 三个环节是畅通的：
 
-![](./pics_6.png)
+![](./pics/2017-05-09_6.png)

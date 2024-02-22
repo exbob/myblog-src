@@ -14,7 +14,7 @@ comments: true
 
 后来英特尔提出了 ATX 主板标准，它带来了 Soft Power ，它使用的 [ATX 电源](http://www.pcguide.com/ref/power/sup/form_ATX.htm)没有直接连到电脑的开关，而是插在主板上，可以通过软件控制，下面是 ATX 主板电源接口的信号定义：
 
-![](./pics_1.jpg)
+![](./pics/2017-11-30_1.jpg)
 
 它还带来了两个重要的变化：
 
@@ -27,7 +27,7 @@ comments: true
 
 现在的计算机都采用了 ACPI(Advanced Configuration and Power Interface) 技术，它是英特尔等公司提出的操作系统应用程序管理所有电源管理接口的规范，包括了软件和硬件方面的规范，操作系统的电源管理功能通过调用 ACPI 接口，实现对符合 ACPI 规范的硬件设备的电源管理，下面是电源管理与 ACPI 的全局结构图：
 
-![](./pics_2.png)
+![](./pics/2017-11-30_2.png)
 
 ACPI 有个概念叫做 power states ，可以理解为电源状态，操作系统可以通过切换设备的电源状态来控制功耗，主板的电源状态有：
 
@@ -72,7 +72,7 @@ ACPI 为 CPU 和计算机上的其他设备都定义了不同的电源状态。
 
 可以看到，除了重启 ，`reboot()` 函数还可以实现停机和关机的功能，所有 halt 和 poweroff 命令也会调用该函数。以 Linux kernel 4.1 为例，系统重启的流程如下图：
 
-![](./pics_3.png)
+![](./pics/2017-11-30_3.png)
 
 重启会调用内核函数 `kernel_restart()` ，定义在 kernel/reboot.c 文件中：
     
@@ -258,7 +258,7 @@ KBD 是 keyboard 的缩写，这是通过键盘控制器重置计算机的方式
 
 主板上的南桥芯片也有电源管理的功能，通过 IO 端口 0xCF9 南桥的 Reset Control Register ，以英特尔的南桥芯片 ICH10 为例，寄存器定义详情可以查看芯片的 Datesheet：
 
-![](./pics_4.png)
+![](./pics/2017-11-30_4.png)
 
 内核中有两种选择：
 

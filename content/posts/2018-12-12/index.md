@@ -11,7 +11,7 @@ comments: true
 
 * [iptables 详解](http://www.zsythink.net/archives/1199)
 
-![](./pics_1.png)
+![](./pics/2018-12-12_1.png)
 
 
 常用的命令可以参考参考 [iptables 手册](https://linux.die.net/man/8/iptables)
@@ -22,7 +22,7 @@ comments: true
 
 IP 转发也可以叫做路由转发，用于连接两个不同的网段，做软路由时经常用到，如下是一个应用场景的网络拓扑：
 
-![](./pics_2.png)
+![](./pics/2018-12-12_2.png)
 
 中间的路由器上是 Linux 系统，有两张网卡，eth0 作为 LAN 口连接内网，wan 作为 WAN 口连接公网。要实现软路由功能，使内网的设备可以通过 WAN 口上网。首先需要开启内核的 IP 转发功能，可以用 sysctl 命令或者直接查看 `/proc/sys/net/ipv4/ip_forward` 文件获得当前系统的 ip_forward 是否开启：
 
@@ -68,7 +68,7 @@ iptables -t nat -A POSTROUTING -o wwan -j MASQUERADE
 
 端口映射就是将外网主机的一个端口映射到内网中某台主机的某个端口，当用户访问外网主机的这个端口时，实际上是由内网主机的相应端口通讯。如下是一个典型的应用场景：
 
-![](./pics_3.png)
+![](./pics/2018-12-12_3.png)
 
 在这个网络拓扑里，右侧 192.168.2.101 的主机想要访问下方路由器连接的 192.168.1.101 主机的 HTTP 服务，该怎么办呢？
 

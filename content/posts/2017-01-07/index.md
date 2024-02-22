@@ -22,7 +22,7 @@ comments: true
 
 一款为Sublime和Atom打造的暗色主题，可以定义Tab的大小，SideBar大小，Find栏大小，并提供主题同款的ICON。
 
-![](./pics_1.jpg)
+![](./pics/2017-01-07_1.jpg)
 
 安装后重启 Sublime Text ，通过菜单栏 Preferences -> Settings 打开用户配置文件，添加：
 
@@ -40,19 +40,19 @@ comments: true
 
 打开的文件夹都太多了，可以用这个来管理，安装后会在菜单栏多一个 Folders 。
 
-![](./pics_2.jpg)
+![](./pics/2017-01-07_2.jpg)
 
 ## 3. [SideBarEnhancements](https://github.com/titoBouzout/SideBarEnhancements)
 
 扩展右键选项：
 
-![](./pics_3.jpg)
+![](./pics/2017-01-07_3.jpg)
 
 ## 4. [SublimeAStyleFormatter](http://theo.im/SublimeAStyleFormatter/)
 
 简单好用的代码格式化工具。安装后，对文件点击鼠标右键，会出现格式化选项，可以全文件格式化，也可以对选中的文本格式化：
 
-![](./pics_4.jpg)
+![](./pics/2017-01-07_4.jpg)
 
 也可以在配置文件中设置快捷键，最好打开保存时自动格式化：
 
@@ -63,7 +63,7 @@ comments: true
 
 在当前文件夹内打开 Terminal 。安装后，对文件或者目录点鼠标右键，会出现 Open Terminal Here... ：
 
-![](./pics_5.jpg)
+![](./pics/2017-01-07_5.jpg)
 
 必须在配置文件中设置打开 Terminal 的命令，对于在 Mac OS 中的 iTerm2 打开新的标签页，可以这样设置：
 
@@ -78,13 +78,13 @@ comments: true
 
 选中后按 command+control+a 就可以使其按照等号对其:
 
-![](./pics_6.jpg)
+![](./pics/2017-01-07_6.jpg)
 
 ## 7. [C Improved](https://github.com/abusalimov/SublimeCImproved)
 
 C 语言语法高亮插件。安装后打开一个 C 源文件，在菜单栏中选中 C Improved ：
 
-![](./pics_7.jpg)
+![](./pics/2017-01-07_7.jpg)
 
 ## 8. [Ctags](https://github.com/SublimeText/CTags)
 
@@ -98,15 +98,15 @@ C 语言语法高亮插件。安装后打开一个 C 源文件，在菜单栏中
     
 然后在对源码目录右键选择 Rebuild Tags ，生成索引文件：
 
-![](./pics_8.jpg)
+![](./pics/2017-01-07_8.jpg)
 
 之后再函数上悬停鼠标，就会出现该函数定义的位置，点击可进入：
 
-![](./pics_9.jpg)
+![](./pics/2017-01-07_9.jpg)
 
 或者右键选择 Navigate to Definition :
 
-![](./pics_10.jpg)
+![](./pics/2017-01-07_10.jpg)
 
 Jump Back 可以跳回调用处。默认快捷键是 `control+shift+左键` 跳转到定义处，`control+shift+右键` 跳回来。
 
@@ -114,17 +114,17 @@ Jump Back 可以跳回调用处。默认快捷键是 `control+shift+左键` 跳�
 
 Markdown 语法高亮配色。下载后解压到包目录下，然后打开一个 Markdown 文件，在菜单中选择语法配置：
 
-![](./pics_11.jpg)
+![](./pics/2017-01-07_11.jpg)
 
 在打开的 Markdown 配置文件中添加该配色文件的路径：
 
-![](./pics_12.jpg)
+![](./pics/2017-01-07_12.jpg)
 
 ## 10. [OmniMarkupPreviewer](http://theo.im/OmniMarkupPreviewer/)
 
 实时预览 Markdown 文件。对 Markdown 文件右键就会出现在浏览器中预览、导出 HTML 文件等选项：
 
-![](./pics_13.jpg)
+![](./pics/2017-01-07_13.jpg)
 
 快捷键：
 
@@ -136,7 +136,7 @@ Markdown 语法高亮配色。下载后解压到包目录下，然后打开一�
 
 自动为源码文件生成头部注释。可以自定义注释内容，自动识别各种语言的文件。
 
-![](./pics_14.gif)
+![](./pics/2017-01-07_14.gif)
 
 ## 12. [Pretty JSON](https://packagecontrol.io/packages/Pretty%20JSON)
 

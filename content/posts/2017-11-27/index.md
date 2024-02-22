@@ -12,7 +12,7 @@ comments: true
 
 PCI 总线是一个并行总线，一个时钟周期有 32 个 bit （后扩展到 64 bit） 同时传输，带宽 133MB/s ，PCI 设备具有独立的地址空间，叫做 PCI 总线地址空间，通过 Host bridge 隔离处理器系统的存储器域与 PCI 总线域，下面挂在了一个 PCI 总线树，典型的结构如下图：
 
-![](./pics_1.png)
+![](./pics/2017-11-27_1.png)
 
 PCI 总线主要分为三个部分：
 
@@ -26,7 +26,7 @@ PCI 总线主要分为三个部分：
 
 在 PCI 总线上，通过 Bus number ，Device number 和 Function number 标识每个 PCI 设备，简称 BDF ，每个 PCI 设备内有单独存储空间，叫做 PCI 配置空间。可以通过 IO 端口 CONFIG_ADDRESS 和 CONFIG_DATA 读取 PCI 配置空间。CONFIG_ADDRESS 的地址是 0xCF8，CONFIG_DATA 的地址是 0xCFC，两个寄存器都为 32bit。CONFIG_ADDRESS 寄存器格式：
 
-![](./pics_2.jpg)
+![](./pics/2017-11-27_2.jpg)
 
 * bit31 是使能对 PCI Bus CONFIG_DATA 的访问；
 *  bit 30～24 为保留，为只读，访问时返回值为 0；
@@ -43,7 +43,7 @@ PCI 总线主要分为三个部分：
 
 配置空间共 256 字节（地址 0x00~0xFF）， 前 64 字节（地址 0x00~0x3F ）是所有 PCI 设备必须支持的：
 
-![](./pics_3.png)
+![](./pics/2017-11-27_3.png)
 
 配置空间都是小端存储。Vendor ID 是厂商 ID ，为保证唯一性，需要设备厂商向 PCI SIG 申请获得，Device ID 由厂商自定义。 Base Address Registers （BAR）用来定义该设备占用的 Memory/IO 空间的类型、起始地址和大小，PCI 设备做多有六个 BAR，PCI 桥最多有两个 BAR 。BAR 在 bit0 来表示该设备是映射到 memory 还是 IO，bar 的 bit0 是 readonly 的，也就是说，设备寄存器是映射到 memory 还是 IO 是由设备制造商决定的，其他人无法修改。空间的大小可以用如下方法读取：
 
@@ -53,7 +53,7 @@ PCI 总线主要分为三个部分：
 
 下面是 BAR 的结构图：
 
-![](./pics_4.png)
+![](./pics/2017-11-27_4.png)
 
 PCI 枚举是个不断递归调用发现新设备的过程，系统启动时, 从 Host Bridge 开始寻找设备和桥。发现桥后设置 Bus，会发现一个 PCI 设备子树，递归的过程中，BIOS/UEFI (或者 Linux 内核, 如果配置成这样)与每个 PCI 设备进行配置交易, 为其分配安全的地址空间和中断等资源。在整个过程结束后，一颗完整的资源分配完毕的树就建立好了。
 
@@ -284,7 +284,7 @@ Linux 内核通过 CF8/CFC 端口读写 PCI 配置空间，实现函数是 /arch
 
 系统上电后，会采用深度优先算法，从 Host Bridge 开始对所有的 PCI/PCIe 设备进行扫描，其过程简要来说是对每一个可能的分支路径深入到不能再深入为止，而且每个节点只能访问一次。这个过程为 PCI 设备枚举。枚举过程中，系统通过配置读事物包来获取下游设备的信息，通过配置写事物包对下游设备进行设置。以下图为例：
 
-![](./pics_5.jpeg)
+![](./pics/2017-11-27_5.jpeg)
 
 PCI 设备体系是一个树形结构，Host Bridge 扩展的总线为 Bus 0 ，然后从左开始向下搜索，每个 Bridge 扩展一条总线，依次以数字顺序从小到大命名 Bus ID ，向下到尽头后退回。如果去掉了上图的 Bus 3 ，后面设备的 Bus ID 都会发生改变，并向前递进。
 

@@ -31,7 +31,7 @@ Regular expression |  Action | Parameters | Instant
 rz waiting to receive.\*\*B0100 | Run Silent Coprocess | /usr/local/bin/iterm2-send-zmodem.sh | checked
 \*\*B00000000000000 | Run Silent Coprocess | /usr/local/bin/iterm2-recv-zmodem.sh | checked
 
-![](./pics_1.png)
+![](./pics/2017-01-10_1.png)
 
 向远程 Linux 主机发送文件：
 

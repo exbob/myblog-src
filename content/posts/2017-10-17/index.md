@@ -12,26 +12,26 @@ comments: true
 
 推荐 <https://www.vultr.com> ，注册成功后先充值，Vultr 支持信用卡、比特币和支付宝等，支付宝比较方便：
 
-![](./pics_1.png)
+![](./pics/2017-10-17_1.png)
 充值完毕后，点击右上角的蓝色加号购买服务器，然后选择服务器位置、系统和配置，国内推荐东京：
 
-![](./pics_2.png)
+![](./pics/2017-10-17_2.png)
 
 选择 Ubuntu 16.04 系统，$5/月的套餐，可以先购买一个月试用：
 
-![](./pics_3.png)
+![](./pics/2017-10-17_3.png)
 使能私有 IP ：
 
-![](./pics_4.png)
+![](./pics/2017-10-17_4.png)
 点击左下角的 Deploy Now 完成购买，稍等片刻，安装完成后：
 
-![](./pics_5.png)
+![](./pics/2017-10-17_5.png)
 点击服务器名称，进入详情页，记下 IP Address、Username 和 Password ：
 
-![](./pics_6.png)
+![](./pics/2017-10-17_6.png)
 现在就可以用 SSH 客户端连接服务器，也可以点击右上第一个图标 View Console ，打开一个 Console 对话框，输入用户名和密码登录：
 
-![](./pics_7.png)
+![](./pics/2017-10-17_7.png)
 
 ## 2. 安装 SSR
 
@@ -80,15 +80,15 @@ ShadowsocksR 已经加入开机自启动，查看运行状态：
 
 查看本地 IP 和所在线路 <http://www.ipip.net/ip.html> ：
 
-![](./pics_8.png)
+![](./pics/2017-10-17_8.png)
 测试各线路 ping 延时 <http://www.ipip.net/ping.php> :
 
-![](./pics_9.png)
+![](./pics/2017-10-17_9.png)
 路由追踪 <http://www.ipip.net/traceroute.php> :
 
-![](./pics_10.png)
+![](./pics/2017-10-17_10.png)
 
-![](./pics_11.png)
+![](./pics/2017-10-17_11.png)
 
 另外有一个测试脚本 bench.sh ，[秋水逸冰](https://teddysun.com/)大神写的，bench.sh 既是脚本名，同时又是域名，下载执行同步，感觉很屌：
 
