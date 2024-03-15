@@ -984,7 +984,91 @@ $ grep -rn 'contains.*MACHINE_FEATURES.*bluetooth' ./*
 $ grep -rn 'contains.*DISTRO_FEATURES.*bluetooth' ./*
 ```
 
-### 4.6 生成SDK
+### 4.6 修改欢迎信息
+
+Linux 系统启动时，会显示欢迎信息，这些信息来自`/etc/issue*`文件：
+
+![](./pics/image_20240315144905.png)
+
+可以查到这个文件是`base-files`软件包安装的
+
+```bash
+$ oe-pkgdata-util find-path /etc/issue
+base-files: /etc/issue
+```
+
+分析这个软件包的recipes文件和任务日志，可以确定`issue`和`issue.net`是base-files的源文件，而且是空文件，由`do_install()`任务安装到image并向文件追加了内容：
+
+```bash
+
+SRC_URI = "file://rotation \
+...
+            file://issue.net \
+            file://issue \
+...
+
+do_install () {
+...
+    ${BASEFILESISSUEINSTALL}
+...
+}
+
+BASEFILESISSUEINSTALL ?= "do_install_basefilesissue"
+...
+do_install_basefilesissue () {
+    install -m 644 ${WORKDIR}/issue*  ${D}${sysconfdir}
+        if [ -n "${DISTRO_NAME}" ]; then
+            printf "${DISTRO_NAME} " >> ${D}${sysconfdir}/issue
+            printf "${DISTRO_NAME} " >> ${D}${sysconfdir}/issue.net
+            if [ -n "${DISTRO_VERSION}" ]; then
+                distro_version_nodate="${@d.getVar('DISTRO_VERSION').replace('snapshot-${DATE}    ','snapshot').replace('${DATE}','')}"
+                printf "%s " $distro_version_nodate >> ${D}${sysconfdir}/issue
+                printf "%s " $distro_version_nodate >> ${D}${sysconfdir}/issue.net
+            fi
+            printf "\\\n \\\l\n" >> ${D}${sysconfdir}/issue
+            echo >> ${D}${sysconfdir}/issue
+            echo "%h"    >> ${D}${sysconfdir}/issue.net
+            echo >> ${D}${sysconfdir}/issue.net
+        fi
+}
+```
+
+我们可以在`do_configure()`任务中添加语句，修改`issue`和`issue.net`源文件的内容。在`meta-mylayer/recipes-core/base-files/base-files_3.0.14.bbappend`文件中添加：
+
+```bash
+do_configure:append() {
+    system="MyPoky"
+    version=$(date "+%Y%m%d")
+    echo "${system} ${version}" > ${WORKDIR}/issue
+    echo "${system} ${version}" > ${WORKDIR}/issue.net
+}
+```
+
+`do_configure:append`表示向`do_configure()`任务追加内容，这里设置了用当前日期作为版本号，每次构建时都会自动更新。重新构建base-files，可以看到版本号已经添加到文件，而`${WORKDIR}/issue`和`${WORKDIR}/image/etc/issue`文件的内容有所不通：
+
+```bash
+$ ls tmp/work/qemux86_64-poky-linux/base-files/3.0.14-r89
+base-files.spec           issue            patches                rotation
+configure.sstate          issue.net        pkgdata                share
+deploy-rpms               license-destdir  pkgdata-pdata-input    shells
+deploy-source-date-epoch  licenses         pkgdata-sysroot        source-date-epoch
+fstab                     motd             profile                sysroot-destdir
+host.conf                 nsswitch.conf    pseudo                 temp
+hosts                     package          recipe-sysroot
+image                     packages-split   recipe-sysroot-native
+
+$ cat tmp/work/qemux86_64-poky-linux/base-files/3.0.14-r89/issue
+MyPoky 20240315
+
+$ cat tmp/work/qemux86_64-poky-linux/base-files/3.0.14-r89/image/etc/issue
+MyPoky 20240315
+Poky (Yocto Project Reference Distro) 4.0.12 \n \l
+
+```
+
+这是因为`do_install()`在`do_configure()`后面执行，又追加了内容，如果要重新设置欢迎信息，可以在`base-files_3.0.14.bbappend`文件中重写`do_install()`任务。
+
+### 4.7 生成SDK
 
 执行`bitbake [image] -c do_populate_sdk`可以生成相应image的SDK，包含了工具链和编译库等：
 
@@ -1061,7 +1145,7 @@ LDFLAGS=-Wl,-O1 -Wl,--hash-style=gnu -Wl,--as-needed  -Wl,-z,relro,-z,now
 $ ${CC} hello.c -o helle
 ```
 
-### 4.7 应用开发和调试
+### 4.8 应用开发和调试
 
 参考[Debugging With the GNU Project Debugger (GDB) Remotely](https://docs.yoctoproject.org/4.0.14/dev-manual/debugging.html#debugging-with-the-gnu-project-debugger-gdb-remotely "Debugging With the GNU Project Debugger (GDB) Remotely")。
 
