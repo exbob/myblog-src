@@ -9,7 +9,7 @@ tags:
   - untagged
 ---
 
-# 1. 概述
+## 1. 概述
 
 硬件平台使用 iMX8MM 参考开发板，带有 M.2 接口，软件平台是 iMX Yocto Linux 5.4.47 。调试海华的 AW-CM276MA 模块，该模块基于 NXP [88W8997](https://www.nxp.com/products/wireless/wi-fi-plus-bluetooth/2-4-5-ghz-dual-band-1x1-wi-fi-5-802-11ac-plus-bluetooth-5-2-solution:88W8987)，PCIe 2.0 接口，M.2 2230 封装，外观如下：
 
@@ -34,7 +34,7 @@ tags:
 - NXP 的 Wi-Fi 产品列表：https://www.nxp.com/products/wireless/wi-fi-plus-bluetooth:WIFI-BLUETOOTH
 - 88W8997 ：https://www.nxp.com/products/wireless/wi-fi-plus-bluetooth/2-4-5-ghz-dual-band-2x2-wi-fi-5-802-11ac-plus-bluetooth-5-3-solution:88W8997
 
-# 2. 驱动和固件
+## 2. 驱动和固件
 
 模块使用的驱动是 mxm_wifiex ，位于内核的drivers/net/wireless/nxp/mxm_wifiex 目录下。这个驱动是 NXP 开发并维护，支持 NXP 的多种无线模块，通常，新的模块需要新的驱动版本支持，可以在 https://source.codeaurora.org/external/imx/mwifiex 下载源码。此外，还需要提供相应模块的固件，NXP 的固件通过 https://github.com/NXP/imx-firmware 发布，也分不同的版本，需要与驱动版本匹配。
 
@@ -297,11 +297,11 @@ mac_address="d8:c0:a6:6e:8f:7d"
 518
 ```
 
-# 3. STA 模式
+## 3. STA 模式
 
 使用 STA 模式可以让 Wi-Fi 模块连接 Wi-Fi 热点。
 
-## 3.1 连接
+### 3.1 连接
 
 首先使用 iw 扫描热点：
 
@@ -434,7 +434,7 @@ Connected to 60:3a:7c:63:c2:88 (on mlan0)
         beacon int:     100
 ```
 
-## 3.2 获取 IP
+### 3.2 获取 IP
 
 连接成成功后，还需要通过 DHCP 获得 IP 。可以用 udhcpc 命令获取 IP ：
 
@@ -486,7 +486,7 @@ mlan0     Link encap:Ethernet  HWaddr d8:c0:a6:6e:8f:7d
           RX bytes:3261 (3.1 KiB)  TX bytes:5822 (5.6 KiB)
 ```
 
-## 3.3 使用 wpa_cli 
+### 3.3 使用 wpa_cli 
 
 配置文件的 ctrl_interface 选项指定了 socket 文件（/var/run/wpa_supplicant），wpa_supplicant 启动后，可以使用 wpa_cli 与 wpa_supplicant 通讯，调试和维护 Wi-Fi 连接。
 
@@ -605,7 +605,7 @@ wpa_cli -i mlan0 save_config          //更新配置文件
 
 如果直接执行 wpa_cli ，不带参数，会进入交互模式，执行 help 查看所有指令，方便调试。 
 
-# 4. AP 模式
+## 4. AP 模式
 
 使用 AP 模式可以将 Wi-Fi 模块作为热点，AP 模式的接口是 uap0 ，需要先设置一个静态 IP ：
 
@@ -613,7 +613,7 @@ wpa_cli -i mlan0 save_config          //更新配置文件
 ifconfig uap0 172.31.255.1 netmask 255.255.255.0 up 
 ```
 
-## 4.1 启动 hostapd
+### 4.1 启动 hostapd
 
 新建 /etc/hostapd-uap0.conf 文件，添加 WPA/WPA2-PSK 认证方式的配置选项，内容如下：
 
@@ -699,7 +699,7 @@ num_sta[0]=0
 
 此时，用手机可以搜到名为 NXP_AP 的热点，密码 12345678，可以连接，但是无法获取 IP ，因为本机没有提供 DHCP 服务。
 
-## 4.2 分配 IP
+### 4.2 分配 IP
 
 可以使用 udhcpd 启动 DHCP 服务，想 Wi-Fi 终端分配 IP。新建配置文件 /etc/udhcpd-uap0.conf ，内容如下：
 
@@ -726,7 +726,7 @@ ce:53:7d:79:65:a5
 
 udhcpd 是 busybox 提供的 DHCP Server ，如果对功能和稳定性有要求，可以使用 dnsmasq 。
 
-## 4.3 使用 hostapd_cli
+### 4.3 使用 hostapd_cli
 
 配置文件的 ctrl_interface 选项指定了 socket 文件（/var/run/hostapd），hostapd 启动后，可以使用 hostapd_cli 与 hostapd 通讯，调试和维护 hostapd 。
 
@@ -761,7 +761,7 @@ tx_rate_info=0
 connected_time=515
 ```
 
-## 4.4 udhcpd.leases
+### 4.4 udhcpd.leases
 
 因为配置文件中设置了 lease_file 选项，有 STA 设备接入热点后，在 /var/lib/misc/ 目录下就会生成一个 udhcpd.leases 文件，这是一个二进制文件，记录了所有接入设备的信息：
 
@@ -801,7 +801,7 @@ struct dyn_lease {
 
 注意，这个文件并不稳定，不能保证及时更新。
 
-# 5. 参考
+## 5. 参考
 
 wpa_supplicant ：
 
