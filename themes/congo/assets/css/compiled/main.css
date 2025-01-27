@@ -1156,7 +1156,7 @@ body:has(#menu-controller:checked) {
 
 .toc {
   max-height: 100vh;
-  overflow-y: auto;
+  overflow-y: hidden;
   padding-bottom: 50px;
 }
 
@@ -2107,7 +2107,7 @@ code {
 }
 
 .max-w-prose {
-  max-width: 65ch;
+  max-width: 80ch;
 }
 
 .flex-auto {
@@ -2424,7 +2424,7 @@ code {
 }
 
 .pe-5 {
-  padding-inline-end: 1.25rem;
+  padding-inline-end: 0rem;
 }
 
 .ps-2 {
@@ -3109,7 +3109,7 @@ code {
   }
 
   .lg\:ps-8 {
-    padding-inline-start: 2rem;
+    padding-inline-start: 1rem;
   }
 }
 
