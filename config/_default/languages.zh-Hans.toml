@@ -7,7 +7,7 @@ title = "Shaocheng.Li"
 # copyright = "Copy, _right?_ :thinking_face:"
 
 [params]
-  dateFormat = " 2006 2 January"
+  dateFormat = "2006 January 2"
 
   # mainSections = ["section1", "section2"]
   description = "LiShaocheng's Blog"
