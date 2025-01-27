@@ -4,7 +4,7 @@ languageDirection = "ltr"
 weight = 2
 
 title = "Congo"
-copyright = "&copy; 2023 Congo contributors"
+copyright = "&copy; 2024 Congo contributors"
 
 [params]
   dateFormat = "2 January 2006"
@@ -12,7 +12,7 @@ copyright = "&copy; 2023 Congo contributors"
   mainSections = ["samples"]
   description = "Un tema poderoso y liviano para Hugo creado con Tailwind CSS."
 
-[author]
+[params.author]
   name = "Congo"
   image = "img/author.jpg"
   headline = "¡No es tu tema ordinario!"

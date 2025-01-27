@@ -25,8 +25,8 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2.6.0
         with:
-          hugo-version: '0.121.1'
-          # extended: true
+          hugo-version: '0.142.0'
+          extended: true
       # 3. 执行 hogo ，输出静态文件
       - name: Build
         run: hugo --minify

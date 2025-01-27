@@ -35,7 +35,7 @@ Note that the variable names provided in this table use dot notation to simplify
 |`baseURL`|_Not set_|The URL to the root of the website.|
 |`defaultContentLanguage`|`"en"`|This value determines the default language of theme components and content. Refer to the [language and i18n](#language-and-i18n) section below for supported language codes.|
 |`enableRobotsTXT`|`true`|When enabled, a `robots.txt` file will be created in the site root that allows search engines to crawl the entire site. If you prefer to provide your own pre-made `robots.txt`, set to `false` and place your file in the `static` directory. For complete control, you may provide a [custom layout]({{< ref "content-examples#custom-layouts" >}}) to generate this file.|
-|`paginate`|`10`|The number of articles listed on each page of the article listing.|
+|`pagination.pagerSize`|`10`|The number of articles listed on each page of the article listing.|
 |`summaryLength`|`0`|The number of words that are used to generate the article summary when one is not provided in the [front matter]({{< ref "front-matter" >}}). A value of `0` will use the first sentence. This value has no effect when summaries are hidden.|
 |`outputs.home`|`["HTML", "RSS", "JSON"]`|The output formats that are generated for the site. Congo requires HTML, RSS and JSON for all theme components to work correctly.|
 |`permalinks`|_Not set_|Refer to the [Hugo docs](https://gohugo.io/content-management/urls/#permalinks) for permalink configuration.|
@@ -48,33 +48,38 @@ Congo is optimised for full multilingual websites and theme assets are translate
 
 The theme currently supports the following languages out of the box:
 
-| Language                                | Code    |
-| --------------------------------------- | ------- |
-| :gb: **English (default)**              | `en`    |
-| :egypt: Arabic                          | `ar`    |
-| :bangladesh: Bengali                    | `bn`    |
-| :bulgaria: Bulgarian                    | `bg`    |
-| :cn: Chinese - Simplified (China)       | `zh-cn` |
-| :taiwan: Chinese - Traditional (Taiwan) | `zh-tw` |
-| :flag-cz: Czech                         | `cs`    |
-| :netherlands: Dutch                     | `nl`    |
-| :finland: Finnish                       | `fi`    |
-| :fr: French                             | `fr`    |
-| :de: German                             | `de`    |
-| :israel: Hebrew                         | `he`    |
-| :hungary: Hungarian                     | `hu`    |
-| :indonesia: Indonesian                  | `id`    |
-| :it: Italian                            | `it`    |
-| :jp: Japanese                           | `ja`    |
-| :poland: Polish                         | `pl`    |
-| :brazil: Portuguese (Brazil)            | `pt-br` |
-| :portugal: Portuguese (Portugal)        | `pt-pt` |
-| :romania: Romanian                      | `ro`    |
-| :ru: Russian                            | `ru`    |
-| :slovakia: Slovak                       | `sk`    |
-| :es: Spanish (Spain)                    | `es`    |
-| :tr: Turkish                            | `tr`    |
-| :ukraine: Ukrainian                     | `uk`    |
+| Language              | Code      |
+| --------------------- | --------- |
+| **English (default)** | `en`      |
+| Arabic                | `ar`      |
+| Bengali               | `bn`      |
+| Bulgarian             | `bg`      |
+| Chinese - Simplified  | `zh-Hans` |
+| Chinese - Traditional | `zh-Hant` |
+| Czech                 | `cs`      |
+| Dutch                 | `nl`      |
+| Finnish               | `fi`      |
+| French                | `fr`      |
+| German                | `de`      |
+| Hebrew                | `he`      |
+| Hungarian             | `hu`      |
+| Indonesian            | `id`      |
+| Italian               | `it`      |
+| Japanese              | `ja`      |
+| Korean                | `ko`      |
+| Norwegian - Bokmål    | `nb`      |
+| Polish                | `pl`      |
+| Portuguese (Brazil)   | `pt-br`   |
+| Portuguese (Portugal) | `pt-pt`   |
+| Romanian              | `ro`      |
+| Russian               | `ru`      |
+| Slovak                | `sk`      |
+| Spanish (Spain)       | `es`      |
+| Swedish               | `sv`      |
+| Tamil                 | `ta`      |
+| Turkish               | `tr`      |
+| Ukrainian             | `uk`      |
+| Vietnamese            | `vi`      |
 
 The default translations can be overridden by creating a custom file in `i18n/[code].yaml` that contains the translation strings. You can also use this method to add new languages. If you'd like to share a new translation with the community, please [open a pull request](https://github.com/jpanther/congo/pulls).
 
@@ -100,11 +105,11 @@ The default file can be used as a template to create additional languages, or re
 |`params.dateFormat`|`"2 January 2006"`|How dates are formatted in this language. Refer to the [Hugo docs](https://gohugo.io/functions/format/#gos-layout-string) for acceptable formats.|
 |`params.mainSections`|_Not set_|The sections that should be displayed in the recent articles list. If not provided the section with the greatest number of articles is used.|
 |`params.description`|_Not set_|The website description. This will be used in the site metadata.|
-|`author.name`|_Not set_|The author's name. This will be displayed in article footers, and on the homepage when the profile layout is used.|
-|`author.image`|_Not set_|Path to the image file of the author. The image should be a 1:1 aspect ratio and placed in the site's `assets/` folder.|
-|`author.headline`|_Not set_|A Markdown string containing the author's headline. It will be displayed on the profile homepage under the author's name.|
-|`author.bio`|_Not set_|A Markdown string containing the author's bio. It will be displayed in article footers.|
-|`author.links`|_Not set_|The links to display alongside the author's details. The config file contains example links which can simply be uncommented to enable. The order that the links are displayed is determined by the order they appear in the array. Custom links can be added by providing corresponding SVG icon assets in `assets/icons/`.|
+|`params.author.name`|_Not set_|The author's name. This will be displayed in article footers, and on the homepage when the profile layout is used.|
+|`params.author.image`|_Not set_|Path to the image file of the author. The image should be a 1:1 aspect ratio and placed in the site's `assets/` folder.|
+|`params.author.headline`|_Not set_|A Markdown string containing the author's headline. It will be displayed on the profile homepage under the author's name.|
+|`params.author.bio`|_Not set_|A Markdown string containing the author's bio. It will be displayed in article footers.|
+|`params.author.links`|_Not set_|The links to display alongside the author's details. The config file contains example links which can simply be uncommented to enable. The order that the links are displayed is determined by the order they appear in the array. Custom links can be added by providing corresponding SVG icon assets in `assets/icons/`.|
 <!-- prettier-ignore-end -->
 
 ### Menus
@@ -125,11 +130,14 @@ Many of the article defaults here can be overridden on a per article basis by sp
 |Name|Default|Description|
 |---|---|---|
 |`colorScheme`|`"congo"`|The theme colour scheme to use. Valid values are `congo` (default), `avocado`, `cherry`, `fire`, `ocean`, `sapphire` and `slate`. Refer to the [Colour Schemes]({{< ref "getting-started#colour-schemes" >}}) section for more details.|
+|`defaultThemeColor`|`"#FFFFFF"`|The original value (before any scripts modify it) to use for the `theme-color` meta tag. The meta tag will be changed based on the theme (`light` or `dark`) but it is useful for services that source the original value this tag to display an accent color (e.g. Discord)|
 |`defaultAppearance`|`"light"`|The default theme appearance, either `light` or `dark`.|
 |`autoSwitchAppearance`|`true`|Whether the theme appearance automatically switches based upon the visitor's operating system preference. Set to `false` to force the site to always use the `defaultAppearance`.|
 |`enableSearch`|`false`|Whether site search is enabled. Set to `true` to enable search functionality. Note that the search feature depends on the `outputs.home` setting in the [site configuration](#site-configuration) being set correctly.|
 |`enableCodeCopy`|`false`|Whether copy-to-clipboard buttons are enabled for `<code>` blocks. The `highlight.noClasses` parameter must be set to `false` for code copy to function correctly. Read more about [other configuration files](#other-configuration-files) below.|
 |`enableImageLazyLoading`|`true`|Whether images should be marked for lazy loading by the browser.|
+|`enableImageWebp`|`true`|Whether images should be output in the more performant WebP format.|
+|`enableQuicklink`|`true`|Whether the [Quicklink](https://getquick.link/) library should be included in the site. Quicklink prefetches links based upon the user's viewport and leads to faster page navigation.|
 |`robots`|_Not set_|String that indicates how robots should handle your site. If set, it will be output in the page head. Refer to [Google's docs](https://developers.google.com/search/docs/advanced/robots/robots_meta_tag#directives) for valid values.|
 |`fingerprintAlgorithm`|`"sha256"`|String that indicates which hashing algorithm is used when fingerprinting assets. Valid options include `md5`, `sha256`, `sha384` and `sha512`.|
 |`header.layout`|`"basic"`|The layout of the page header and menu. Valid values are `basic`, `hamburger`, `hybrid` or `custom`. When set to `custom`, you must provide your own layout by creating a `/layouts/partials/header/custom.html` file.|
@@ -159,7 +167,7 @@ Many of the article defaults here can be overridden on a per article basis by sp
 |`article.showTaxonomies`|`false`|Whether or not the taxonomies related to this article are displayed.|
 |`article.showWordCount`|`false`|Whether or not article word counts are displayed.|
 |`article.showComments`|`false`|Whether or not the [comments partial]({{< ref "partials#comments" >}}) is included after the article footer.|
-|`article.sharingLinks`|_Not set_|Which sharing links to display at the end of each article. When not provided, or set to `false` no links will be displayed.|
+|`article.sharingLinks`|_Not set_|An array of sharing links to display at the end of each article. Valid options include `facebook`, `x-twitter`, `mastodon`, `pinterest`, `reddit`, `linkedin`, `email`, `threads`, `telegram` and `line`. When not provided, or set to `false`, no links will be displayed.|
 |`list.showBreadcrumbs`|`false`|Whether or not breadcrumbs are displayed in the header on list pages.|
 |`list.showTableOfContents`|`false`|Whether or not the table of contents is displayed on list pages.|
 |`list.showTaxonomies`|`false`|Whether or not the taxonomies related to this article are displayed on list pages.|
@@ -169,10 +177,11 @@ Many of the article defaults here can be overridden on a per article basis by sp
 |`sitemap.excludedKinds`|`["taxonomy", "term"]`|Kinds of content that should be excluded from the generated `/sitemap.xml` file. Refer to the [Hugo docs](https://gohugo.io/templates/section-templates/#page-kinds) for acceptable values.|
 |`taxonomy.showTermCount`|`true`|Whether or not the number of articles within a taxonomy term is displayed on the taxonomy listing.|
 |`fathomAnalytics.site`|_Not set_|The site code generated by Fathom Analytics for the website. Refer to the [Analytics docs]({{< ref "partials#analytics" >}}) for more details.|
-|`fathomAnalytics.domain`|_Not set_|If using a custom domain with Fathom Analytics, provide it here to serve `script.js` from the custom domain.|
 |`plausibleAnalytics.domain`|_Not set_|Enter the domain of the website you want to track. Refer to the [Analytics docs]({{< ref "partials#analytics" >}}) for more details.|
 |`plausibleAnalytics.event`|_Not set_|Plausible api event proxied URL. Refer to the [Analytics docs]({{< ref "partials#analytics" >}}) for more details.|
 |`plausibleAnalytics.script`|_Not set_|Plausible analysis script proxied URL. Refer to the [Analytics docs]({{< ref "partials#analytics" >}}) for more details.|
+|`umamiAnalytics.site`|_Not set_|The tracking code generated by Umami Analytics for the website. Refer to the [Analytics docs]({{< ref "partials#analytics" >}}) for more details.|
+|`umamiAnalytics.region`|`eu`|Select the Umami Analytics server region to connect to. The value is a string that can be either `eu` or `us`.|
 |`verification.google`|_Not set_|The site verification string provided by Google to be included in the site metadata.|
 |`verification.bing`|_Not set_|The site verification string provided by Bing to be included in the site metadata.|
 |`verification.pinterest`|_Not set_|The site verification string provided by Pinterest to be included in the site metadata.|

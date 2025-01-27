@@ -9,11 +9,11 @@
 
 ## 快速开始
 
-在电脑上安装 [hugo v0.121.1](https://github.com/gohugoio/hugo/releases/tag/v0.121.1) :
+下载安装 [hugo_extended_0.142.0_windows-amd64.zip](https://github.com/gohugoio/hugo/releases/tag/v0.142.0):
 
 ```
 > hugo.exe version
-hugo v0.121.1-00b46fed8e47f7bb0a85d7cfc2d9f1356379b740 windows/amd64 BuildDate=2023-12-08T08:47:45Z VendorInfo=gohugoio
+hugo v0.142.0-1f746a872442e66b6afd47c8c04ac42dc92cdb6f+extended windows/amd64 BuildDate=2025-01-22T12:20:52Z VendorInfo=gohugoio
 ```
 
 将源码克隆到本地：
