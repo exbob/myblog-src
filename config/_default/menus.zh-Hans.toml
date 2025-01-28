@@ -30,6 +30,11 @@
   pageRef = "exercise"
   weight = 40
 
+[[main]]
+  name = "好物"
+  pageRef = "share"
+  weight = 50
+
 # [[main]]
 #   name = "Categories"
 #   pageRef = "categories"
