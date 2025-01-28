@@ -15,6 +15,21 @@
   pageRef = "posts"
   weight = 10
 
+[[main]]
+  name = "项目"
+  pageRef = "projects"
+  weight = 20
+
+[[main]]
+  name = "观影"
+  pageRef = "movies"
+  weight = 30
+
+[[main]]
+  name = "运动"
+  pageRef = "exercise"
+  weight = 40
+
 # [[main]]
 #   name = "Categories"
 #   pageRef = "categories"
