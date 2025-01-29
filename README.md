@@ -9,7 +9,10 @@
 
 ## 快速开始
 
-下载安装 [hugo_extended_0.142.0_windows-amd64.zip](https://github.com/gohugoio/hugo/releases/tag/v0.142.0):
+下载安装 [hugo version 0.142.0](https://github.com/gohugoio/hugo/releases/tag/v0.142.0) 版本：
+
+- Windows 就下载 hugo_extended_0.142.0_windows-amd64.zip
+- Ubuntu 就下载 hugo_extended_0.142.0_linux-amd64.deb
 
 ```
 > hugo.exe version
