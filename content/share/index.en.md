@@ -27,6 +27,9 @@ descr="一个 Hugo 的主题模板，风格有点花哨，功能丰富。" >}}
 
 ## 工具
 
+{{< sharecard title="IEEE Mac address 查询" link="https://standards.ieee.org/products-programs/regauth/"
+descr="Mac Address 官方组织的查询页面，可以下载所有已经分配的 Mac Address 列表，也可以在线查询 Mac Address 属于哪个组织。" >}}
+
 {{< sharecard title="傲星工具箱" link="https://tool.aoaostar.com/"
 descr="一款在线工具箱，包括了编码转换，数据加密，哈希计算等。" >}}
 
