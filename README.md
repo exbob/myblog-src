@@ -73,6 +73,8 @@ comments: true
 
 用三条横线标注头部元数据，`draft = true` 表示这个文章会被隐藏，不显示到博客上，发布时可以改为 fales 。图片存放在 pics 路径下，在 index.md 中通过相对路径引用。
 
+也可以执行 `./newpost.sh` 直接完成以上工作。
+
 ## 使用 github actions
 
 在 `.github\workflows\deploy.yml` 文件中配置了工作流，在源码仓库 `exbob/myblog-src` 利用 github actions 自动生成静态页面，并推送到 `exbob/exbob.github.io` 仓库。使用的模块是:
