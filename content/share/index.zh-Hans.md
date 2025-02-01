@@ -25,6 +25,9 @@ descr="一个 Hugo 的主题模板，风格简洁，功能丰富。" >}}
 {{< sharecard title="FixIt" link="https://github.com/hugo-fixit/FixIt"
 descr="一个 Hugo 的主题模板，风格有点花哨，功能丰富。" >}}
 
+{{< sharecard title="Design" link="https://www.design.com/"
+descr="一个在线的 Logo 设计网站，收费。" >}}
+
 ## 工具
 
 {{< sharecard title="IEEE Mac address 查询" link="https://standards.ieee.org/products-programs/regauth/"
