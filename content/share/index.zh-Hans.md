@@ -27,6 +27,9 @@ descr="一个 Hugo 的主题模板，风格有点花哨，功能丰富。" >}}
 
 ## 工具
 
+{{< sharecard title="Terminalizer" link="https://www.terminalizer.com/"
+descr="记录 Linux 终端操作，并生成动画 GIF 图片的工具，基于 Node.js" >}}
+
 {{< sharecard title="PythonTutor" link="https://pythontutor.com/"
 descr="在线编译器、AI导师和可视化调试工具，支持Python、Java、C、C++和JavaScript，它包含一个逐步可视化调试器和AI导师，帮助您理解和调试代码。" >}}
 

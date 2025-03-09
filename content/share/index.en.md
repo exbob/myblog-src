@@ -27,6 +27,9 @@ descr="一个 Hugo 的主题模板，风格有点花哨，功能丰富。" >}}
 
 ## 工具
 
+{{< sharecard title="Terminalizer" link="https://www.terminalizer.com/"
+descr="Record your terminal and generate animated gif images or share a web player，base Node.js" >}}
+
 {{< sharecard title="PythonTutor" link="https://pythontutor.com/"
 descr="Online Compiler, AI Tutor, and Visual Debugger for Python, Java, C, C++, and JavaScript. It contains a step-by-step visual debugger and AI tutor to help you understand and debug code." >}}
 
