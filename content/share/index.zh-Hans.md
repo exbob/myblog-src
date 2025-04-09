@@ -13,6 +13,9 @@ showPagination: false
 
 ## 资源
 
+{{< sharecard title="Learn X in Y minutes" link="https://learnxinyminutes.com/"
+descr="一个快速入门各种编程语言的网站，支持多种语言文字。" >}}
+
 {{< sharecard title="Hello 算法" link="https://github.com/krahets/hello-algo"
 descr="动画图解、一键运行的数据结构与算法教程。支持 Python, Java, C++, C, C#, JS, Go, Swift, Rust等编程语言。" >}}
 
