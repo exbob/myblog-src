@@ -20,7 +20,7 @@ tags:
 
 参考资源：
 
-- 自动爬取豆瓣记录的 github action ：https://imnerd.org/doumark.html- 
-- 自动提交变更的 github action ：https://github.com/EndBug/add-and-commit
-- 利用 github action 自动更新豆瓣观影记录的例子：https://github.com/koobai/blog/tree/main
-- 手动更新豆瓣观影记录的例子：https://liuhouliang.com/post/movie_record
+- 自动爬取豆瓣记录的 github action ：<https://imnerd.org/doumark.html>
+- 自动提交变更的 github action ：<https://github.com/EndBug/add-and-commit>
+- 利用 github action 自动更新豆瓣观影记录的例子：<https://github.com/koobai/blog/tree/main>
+- 手动更新豆瓣观影记录的例子：<https://liuhouliang.com/post/movie_record>
