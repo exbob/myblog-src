@@ -13,7 +13,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* 半透明黑色遮罩 */
+    background-color: rgba(0, 0, 0, 0.9); /* 半透明黑色遮罩 */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -47,13 +47,19 @@ movie-cell a {
     text-align: center; /* 居中对齐 */
 }
 
-.movie-cell .movie-star {
+.movie-cell .movie-rating {
     font-weight: bold; /* 可选：加粗文字 */
     color: white; /* 白色文字 */
     text-align: center; /* 居中对齐 */
 }
 
-.movie-cell .movie-startime {
+.movie-cell .movie-genres {
+    font-weight: bold; /* 可选：加粗文字 */
+    color: white; /* 白色文字 */
+    text-align: center; /* 居中对齐 */
+}
+
+.movie-cell .movie-star {
     font-weight: bold; /* 可选：加粗文字 */
     color: white; /* 白色文字 */
     text-align: center; /* 居中对齐 */
