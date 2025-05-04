@@ -1,0 +1,84 @@
+/* 图片样式 */
+.movie-cell img {
+    max-width: 100%; /* 确保图片宽度不超过单元格 */
+    max-height: 24rem; /* 限制图片的最大高度 */
+    object-fit: cover; /* 图片按比例裁剪，填充整个区域 */
+    margin: 0px; /* 移除顶部边距 */
+}
+
+/* 遮罩层 */
+.movie-cell .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* 半透明黑色遮罩 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* 默认隐藏 */
+    transition: opacity 0.3s ease; /* 添加平滑过渡效果 */
+}
+
+.movie-cell:hover .overlay {
+    opacity: 1; /* 显示遮罩 */
+}
+
+/* 网格布局 */
+#movie-grid {
+    display: flex;
+    flex-wrap: wrap; /* 允许子元素换行 */
+    margin-left: -0.5rem; /* 与子元素的 padding 对齐 */
+    margin-right: -0.5rem;
+}
+
+/* 确保 movie-grid 容器下的链接元素边框宽度为 0 */
+movie-cell a {
+    border-width: 0 !important; /* 强制移除边框宽度 */
+    border: none !important; /* 确保没有边框样式 */
+    padding: 0 !important; /* 强制移除内边距 */
+}
+
+.movie-cell .movie-title {
+    font-weight: bold; /* 可选：加粗文字 */
+    color: white; /* 白色文字 */
+    text-align: center; /* 居中对齐 */
+}
+
+.movie-cell .movie-star {
+    font-weight: bold; /* 可选：加粗文字 */
+    color: white; /* 白色文字 */
+    text-align: center; /* 居中对齐 */
+}
+
+.movie-cell .movie-startime {
+    font-weight: bold; /* 可选：加粗文字 */
+    color: white; /* 白色文字 */
+    text-align: center; /* 居中对齐 */
+}
+
+.movie-cell {
+    position: relative; /* 为遮罩层定位 */
+    width: 25%; /* 每行 4 个单元格 */
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    margin-bottom: 1rem; /* 单元格之间的垂直间距 */
+    border: none; /* 移除边框 */
+    background-color: transparent; /* 确保背景透明 */
+    overflow: hidden; /* 确保遮罩不会超出容器 */
+}
+
+/* 按钮样式 */
+#load-more {
+    background-color: #007bff; /* 按钮背景色 */
+    color: white; /* 按钮文字颜色 */
+    padding: 0.5rem 1rem; /* 按钮内边距 */
+    border-radius: 0.25rem; /* 按钮圆角 */
+    cursor: pointer; /* 鼠标悬停时显示手型 */
+}
+
+#load-more:hover {
+    background-color: #0056b3; /* 按钮悬停时的背景色 */
+}

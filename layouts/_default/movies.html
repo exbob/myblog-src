@@ -1,0 +1,68 @@
+{{ define "main" }}
+<article class="max-w-7xl mx-auto">
+  <header>
+    {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
+    {{ partial "breadcrumbs.html" . }}
+    {{ end }}
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      {{ .Title | emojify }}
+    </h1>
+  </header>
+  <section class="prose mt-6 max-w-full dark:prose-invert">
+    <!-- 使用 flex 布局容器 -->
+    <div id="movie-grid" class="flex flex-wrap -mx-2">
+      {{ $csv := resources.Get "movie.csv" | transform.Unmarshal }}
+      {{ range $index, $row := $csv }}
+        {{ if gt $index 0 }} <!-- Skip the first row -->
+        <div class="movie-cell hidden w-1/4 px-2 mb-4">
+          <a href="{{ index $row 5 }}" target="_blank" class="relative group block">
+            <!-- 限制图片分辨率 -->
+            <img src="{{ index $row 3 }}" alt="{{ index $row 1 }}" class="w-full max-w-full max-h-64 object-cover h-auto">
+            <div class="overlay">
+              <p class="movie-title">{{ index $row 1 }}</p>
+              <p class="movie-star">{{ index $row 8 }}分</p>
+              <p class="movie-startime">{{ index $row 11 }}</p>
+            </div>
+          </a>
+        </div>
+        {{ end }}
+      {{ end }}
+    </div>
+    <div class="mt-4 text-center">
+      <button id="load-more" class="bg-blue-500 text-white px-4 py-2 rounded">More...</button>
+    </div>
+  </section>
+  <footer class="pt-8">
+    {{ partial "sharing-links.html" . }}
+  </footer>
+</article>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const cells = document.querySelectorAll(".movie-cell");
+    const loadMoreButton = document.getElementById("load-more");
+    let visibleCount = 0;
+    const increment = 20;
+
+    function showNextCells() {
+      const nextCount = Math.min(visibleCount + increment, cells.length);
+      for (let i = visibleCount; i < nextCount; i++) {
+        cells[i].classList.remove("hidden");
+      }
+      visibleCount = nextCount;
+
+      // Hide the button if all cells are visible
+      if (visibleCount >= cells.length) {
+        loadMoreButton.style.display = "none";
+      }
+    }
+
+    // Initial load
+    showNextCells();
+
+    // Add event listener to the button
+    loadMoreButton.addEventListener("click", showNextCells);
+  });
+</script>
+
+{{ end }}
