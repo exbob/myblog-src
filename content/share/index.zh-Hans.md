@@ -13,6 +13,9 @@ showPagination: false
 
 ## 资源
 
+{{< sharecard title="China EMU" link="https://www.china-emu.cn/"
+descr="一个记录中国铁路发展和现状的网站。" >}}
+
 {{< sharecard title="Learn X in Y minutes" link="https://learnxinyminutes.com/"
 descr="一个快速入门各种编程语言的网站，支持多种语言文字。" >}}
 
