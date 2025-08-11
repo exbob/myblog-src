@@ -10,7 +10,7 @@ tags:
 ---
 
 
-昨晚看了 [代码之外](https://bento.me/beyondcode) 的播客 [第 11 集 | Owen 聊沉浸式翻译的起源、裸辞三年的经历、做穷人也能用的产品、大亚湾的生活](https://www.bilibili.com/video/BV16vYvekE3g/?spm_id_from=333.788.videopod.sections&vd_source=8eafd123e43ea986a553a4fd6f476789)，最感兴趣的是 Owen 提到了他的生活哲学：追求注意力自由。然后找到他的 [博客](https://www.owenyoung.com/)，看到这段阐述，是我想要的生活。
+昨晚看了 [代码之外](https://bento.me/beyondcode) 的播客 [第 11 集 | Owen 聊沉浸式翻译的起源、裸辞三年的经历、做穷人也能用的产品、大亚湾的生活](https://www.bilibili.com/video/BV16vYvekE3g/?spm_id_from=333.788.videopod.sections&vd_source=8eafd123e43ea986a553a4fd6f476789)，最感兴趣的是 Owen 提到了他的生活哲学：追求注意力自由。然后找到他的 [博客](https://www.owenyoung.com/)，看到这段阐述，是我想说的，也是我想要的。
 
 ## 我的生活哲学
 
