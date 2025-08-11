@@ -11,6 +11,17 @@ showWordCount: false
 showPagination: false
 ---
 
+## 博客
+
+{{< sharecard title="Owen的博客" link="https://www.owenyoung.com/"
+descr="一个追求注意力自由的软件工程师，<沉浸式翻译>作者" >}}
+
+{{< sharecard title="面向信仰编程" link="https://draveness.me/"
+descr="《为什么这么设计系列》是一系列关于计算机领域中程序设计决策的文章。" >}}
+
+{{< sharecard title="朱双印的个人日志" link="https://www.zsythink.net/"
+descr="主要是 Linux 运维知识分享，尤其是 iptables 的详细解释" >}}
+
 ## 资源
 
 {{< sharecard title="China EMU" link="https://www.china-emu.cn/"
@@ -47,11 +58,3 @@ descr="Mac Address 官方组织的查询页面，可以下载所有已经分配�
 
 {{< sharecard title="傲星工具箱" link="https://tool.aoaostar.com/"
 descr="一款在线工具箱，包括了编码转换，数据加密，哈希计算等。" >}}
-
-## 博客
-
-{{< sharecard title="面向信仰编程" link="https://draveness.me/"
-descr="《为什么这么设计系列》是一系列关于计算机领域中程序设计决策的文章。" >}}
-
-{{< sharecard title="朱双印的个人日志" link="https://www.zsythink.net/"
-descr="主要是 Linux 运维知识分享，尤其是 iptables 的详细解释" >}}
