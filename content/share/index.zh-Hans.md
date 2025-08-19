@@ -22,6 +22,11 @@ descr="《为什么这么设计系列》是一系列关于计算机领域中程�
 {{< sharecard title="朱双印的个人日志" link="https://www.zsythink.net/"
 descr="主要是 Linux 运维知识分享，尤其是 iptables 的详细解释" >}}
 
+## 开源
+
+{{< sharecard title="Mongoose" link="https://mongoose.ws/"
+descr="专为 C/C++ 设计的轻量级网络库，支持 TCP/UDP/HTTPS/Websocket 等，跨平台（Windows、Linux和单片机）" >}}
+
 ## 资源
 
 {{< sharecard title="China EMU" link="https://www.china-emu.cn/"
